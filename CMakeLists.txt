@@ -15,6 +15,6 @@ add_executable(Canvas
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui)
+    mainwindow.ui ScribbleArea.cpp ScribbleArea.h)
 
 target_link_libraries(Canvas PRIVATE Qt5::Widgets)
