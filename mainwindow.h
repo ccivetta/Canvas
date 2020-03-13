@@ -4,6 +4,10 @@
 #include <QList>
 #include <QMainWindow>
 
+QT_BEGIN_NAMESPACE
+namespace Ui {class MainWindow;}
+QT_END_NAMESPACE
+
 class ScribbleArea;
 
 class MainWindow : public QMainWindow
@@ -11,17 +15,17 @@ class MainWindow : public QMainWindow
 Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+    //void closeEvent(QCloseEvent *event) override;
 
 private slots:
-    void open();
-    void save();
+    //void open();
+    //void save();
     void penColor();
     void penWidth();
-    void about();
+    //void about();
 
 private:
     void createActions();
@@ -29,22 +33,23 @@ private:
     bool maybeSave();
     bool saveFile(const QByteArray &fileFormat);
 
-    ScribbleArea *scribbleArea;
+    ScribbleArea *scribbleArea{};
+    Ui::MainWindow *ui{};
 
-    QMenu *saveAsMenu;
-    QMenu *fileMenu;
-    QMenu *optionMenu;
-    QMenu *helpMenu;
+    QMenu *saveAsMenu{};
+    QMenu *fileMenu{};
+    QMenu *optionMenu{};
+    QMenu *helpMenu{};
 
-    QAction *openAct;
+    QAction *openAct{};
     QList<QAction *> saveAsActs;
-    QAction *exitAct;
-    QAction *penColorAct;
-    QAction *penWidthAct;
-    QAction *printAct;
-    QAction *clearScreenAct;
-    QAction *aboutAct;
-    QAction *aboutQtAct;
+    QAction *exitAct{};
+    QAction *penColorAct{};
+    QAction *penWidthAct{};
+    QAction *printAct{};
+    QAction *clearScreenAct{};
+    QAction *aboutAct{};
+    QAction *aboutQtAct{};
 };
 
 #endif
