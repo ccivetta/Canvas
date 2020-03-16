@@ -10,18 +10,26 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <./ui_mainwindow.h>
+#include <QBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow), scribbleArea(new ScribbleArea(this))
+        : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
 {
-
     ui->setupUi(this);
-    //setCentralWidget(scribbleArea);
+    QWidget *w = new QWidget(this);
+    QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
+    layout->addWidget(ui->colorBtn);
+    layout->addWidget(ui->MainScribbleArea);
+    w->setLayout(layout);
+    setCentralWidget(w);
+
+    ui->MainScribbleArea->setAttribute(Qt::WA_StaticContents);
     createActions();
     createMenus();
 
     setWindowTitle(tr("Scribble"));
     resize(500, 500);
+
 }
 //void MainWindow::closeEvent(QCloseEvent *event)
 //
@@ -121,7 +129,7 @@ void MainWindow::createActions()
    clearScreenAct->setShortcut(tr("Ctrl+L"));
    connect(clearScreenAct, &QAction::triggered,
 
-            scribbleArea, &ScribbleArea::clearImage);
+            ui->MainScribbleArea, &ScribbleArea::clearImage);
 
 //    aboutAct = new QAction(tr("&About"), this);
 //    connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
