@@ -11,6 +11,7 @@
 #include <QCloseEvent>
 #include <./ui_mainwindow.h>
 #include <QBoxLayout>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
@@ -19,16 +20,20 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *w = new QWidget(this);
     QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
     layout->addWidget(ui->colorBtn);
+    layout->addWidget(ui->clearBtn);
     layout->addWidget(ui->MainScribbleArea);
     w->setLayout(layout);
     setCentralWidget(w);
+    connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
+    connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
 
-    ui->MainScribbleArea->setAttribute(Qt::WA_StaticContents);
+    //ui->MainScribbleArea->setAttribute(Qt::WA_StaticContents);
     createActions();
     createMenus();
 
     setWindowTitle(tr("Scribble"));
     resize(500, 500);
+
 
 }
 //void MainWindow::closeEvent(QCloseEvent *event)
@@ -62,9 +67,9 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::penColor()
 
 {
-    QColor newColor = QColorDialog::getColor(scribbleArea->penColor());
+    QColor newColor = QColorDialog::getColor(ui->MainScribbleArea->penColor());
     if (newColor.isValid())
-        scribbleArea->setPenColor(newColor);
+        ui->MainScribbleArea->setPenColor(newColor);
 }
 
 void MainWindow::penWidth()
@@ -127,9 +132,14 @@ void MainWindow::createActions()
 //
    clearScreenAct = new QAction(tr("&Clear Screen"), this);
    clearScreenAct->setShortcut(tr("Ctrl+L"));
+   //connect(ui->colorBtn, SIGNAL(released()), ui->MainScribbleArea, &ScribbleArea::clearImage);
    connect(clearScreenAct, &QAction::triggered,
 
             ui->MainScribbleArea, &ScribbleArea::clearImage);
+
+
+
+
 
 //    aboutAct = new QAction(tr("&About"), this);
 //    connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
@@ -197,3 +207,14 @@ void MainWindow::createMenus()
 //        return false;
 //    return scribbleArea->saveImage(fileName, fileFormat.constData());
 //}
+
+
+void MainWindow::on_clearBtn_clicked()
+{
+    ui->MainScribbleArea->clearImage();
+}
+
+void MainWindow::on_colorBtn_clicked()
+{
+    penColor();
+}

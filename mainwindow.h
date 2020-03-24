@@ -26,7 +26,9 @@ private slots:
     void penColor();
     void penWidth();
     //void about();
-
+    //void test();
+    void on_clearBtn_clicked();
+    void on_colorBtn_clicked();
 private:
     void createActions();
     void createMenus();
@@ -50,6 +52,9 @@ private:
     QAction *clearScreenAct{};
     QAction *aboutAct{};
     QAction *aboutQtAct{};
+
+
+
 };
 
 #endif

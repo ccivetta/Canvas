@@ -27,7 +27,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="colorBtn">
+   <widget class="QPushButton" name="clearBtn">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -37,7 +37,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="colorBtn">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>140</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change Color</string>
     </property>
    </widget>
   </widget>
