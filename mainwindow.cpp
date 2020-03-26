@@ -11,6 +11,7 @@
 #include <QCloseEvent>
 #include <./ui_mainwindow.h>
 #include <QBoxLayout>
+#include <QVBoxLayout>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,9 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     QWidget *w = new QWidget(this);
+    QWidget *y = new QWidget(this);
     QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
-    layout->addWidget(ui->colorBtn);
-    layout->addWidget(ui->clearBtn);
+    QVBoxLayout *layout2 = new QVBoxLayout(this);
+    layout2->addWidget(ui->colorBtn);
+    layout2->addWidget(ui->clearBtn);
+    y->setLayout(layout2);
+    layout->addWidget(y);
     layout->addWidget(ui->MainScribbleArea);
     w->setLayout(layout);
     setCentralWidget(w);
