@@ -29,6 +29,7 @@ private slots:
     //void test();
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
+    void on_widthBtn_clicked();
 private:
     void createActions();
     void createMenus();

@@ -18,21 +18,23 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
 {
     ui->setupUi(this);
-    QWidget *w = new QWidget(this);
-    QWidget *y = new QWidget(this);
-    QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
-    QVBoxLayout *layout2 = new QVBoxLayout(this);
-    layout2->addWidget(ui->colorBtn);
-    layout2->addWidget(ui->clearBtn);
-    y->setLayout(layout2);
-    layout->addWidget(y);
-    layout->addWidget(ui->MainScribbleArea);
-    w->setLayout(layout);
+   QWidget *w = new QWidget(this);
+//    QWidget *y = new QWidget(this);
+//    QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
+//    QVBoxLayout *layout2 = new QVBoxLayout(this);
+//    layout2->addWidget(ui->colorBtn);
+//    layout2->addWidget(ui->clearBtn);
+//    layout2->addWidget(ui->widthBtn);
+//    y->setLayout(layout2);
+//    layout->addWidget(y);
+//    layout->addWidget(ui->MainScribbleArea);
+    w->setLayout(ui->layout);
+    //w->setAttribute(Qt::WA_StaticContents);
     setCentralWidget(w);
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
+    connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
 
-    //ui->MainScribbleArea->setAttribute(Qt::WA_StaticContents);
     createActions();
     createMenus();
 
@@ -83,10 +85,10 @@ void MainWindow::penWidth()
     bool ok;
     int newWidth = QInputDialog::getInt(this, tr("Scribble"),
                                         tr("Select pen width:"),
-                                        scribbleArea->penWidth(),
+                                        ui->MainScribbleArea->penWidth(),
                                         1, 50, 1, &ok);
     if (ok)
-        scribbleArea->setPenWidth(newWidth);
+        ui->MainScribbleArea->setPenWidth(newWidth);
 }
 
 //void MainWindow::about()
@@ -222,4 +224,8 @@ void MainWindow::on_clearBtn_clicked()
 void MainWindow::on_colorBtn_clicked()
 {
     penColor();
+}
+
+void MainWindow::on_widthBtn_clicked() {
+    penWidth();
 }
