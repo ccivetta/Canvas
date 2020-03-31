@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
 {
     ui->setupUi(this);
-   QWidget *w = new QWidget(this);
+   //QWidget *w = new QWidget(this);
 //    QWidget *y = new QWidget(this);
 //    QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
 //    QVBoxLayout *layout2 = new QVBoxLayout(this);
@@ -28,9 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    y->setLayout(layout2);
 //    layout->addWidget(y);
 //    layout->addWidget(ui->MainScribbleArea);
-    w->setLayout(ui->layout);
+    //w->setLayout(ui->layout);
     //w->setAttribute(Qt::WA_StaticContents);
-    setCentralWidget(w);
+    //setCentralWidget(w);
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     createMenus();
 
     setWindowTitle(tr("Scribble"));
-    resize(500, 500);
+    resize(500, 300);
 
 
 }
