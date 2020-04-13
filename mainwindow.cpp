@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     createMenus();
 
     setWindowTitle(tr("Scribble"));
-    resize(500, 300);
+    //resize(500, 300);
 
 
 }
