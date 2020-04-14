@@ -30,6 +30,7 @@ private slots:
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
     void on_widthBtn_clicked();
+    void on_submitBtn_clicked();
 private:
     void createActions();
     void createMenus();

@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
+    connect(ui->submitBtn, SIGNAL(released()), this, SLOT(on_submitBtn_clicked()));
 
     createActions();
     createMenus();
@@ -228,4 +229,8 @@ void MainWindow::on_colorBtn_clicked()
 
 void MainWindow::on_widthBtn_clicked() {
     penWidth();
+}
+
+void MainWindow::on_submitBtn_clicked() {
+
 }
