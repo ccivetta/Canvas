@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
     connect(ui->submitBtn, SIGNAL(released()), this, SLOT(on_submitBtn_clicked()));
-
     createActions();
     createMenus();
 
@@ -232,5 +231,5 @@ void MainWindow::on_widthBtn_clicked() {
 }
 
 void MainWindow::on_submitBtn_clicked() {
-
+    ui->assignmentLbl->setText("Test");
 }
