@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ScribbleArea.h"
-
+#include <QSignalMapper>
 #include <QApplication>
 #include <QColorDialog>
 #include <QFileDialog>
@@ -13,28 +13,21 @@
 #include <QBoxLayout>
 #include <QVBoxLayout>
 #include <iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
 {
     ui->setupUi(this);
-   //QWidget *w = new QWidget(this);
-//    QWidget *y = new QWidget(this);
-//    QBoxLayout *layout = new QBoxLayout(static_cast<QBoxLayout::Direction>(1), this);
-//    QVBoxLayout *layout2 = new QVBoxLayout(this);
-//    layout2->addWidget(ui->colorBtn);
-//    layout2->addWidget(ui->clearBtn);
-//    layout2->addWidget(ui->widthBtn);
-//    y->setLayout(layout2);
-//    layout->addWidget(y);
-//    layout->addWidget(ui->MainScribbleArea);
-    //w->setLayout(ui->layout);
-    //w->setAttribute(Qt::WA_StaticContents);
-    //setCentralWidget(w);
+    vector<QString> drawings = {"Banana", "Penguin", "Cat", "Fish", "Shoe"};
+
+    QSignalMapper *signalMapper = new QSignalMapper(this);
+    signalMapper->setMapping(ui->submitBtn, "Test");
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
-    connect(ui->submitBtn, SIGNAL(released()), this, SLOT(on_submitBtn_clicked()));
+    connect(ui->submitBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
+    connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(on_submitBtn_clicked(QString)));
     createActions();
     createMenus();
 
@@ -230,6 +223,6 @@ void MainWindow::on_widthBtn_clicked() {
     penWidth();
 }
 
-void MainWindow::on_submitBtn_clicked() {
-    ui->assignmentLbl->setText("Test");
+void MainWindow::on_submitBtn_clicked(QString s) {
+    ui->assignmentLbl->setText(s);
 }

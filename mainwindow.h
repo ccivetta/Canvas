@@ -3,7 +3,7 @@
 
 #include <QList>
 #include <QMainWindow>
-
+using namespace std;
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
 QT_END_NAMESPACE
@@ -30,7 +30,7 @@ private slots:
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
     void on_widthBtn_clicked();
-    void on_submitBtn_clicked();
+    void on_submitBtn_clicked(QString s);
 private:
     void createActions();
     void createMenus();
