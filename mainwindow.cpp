@@ -15,19 +15,20 @@
 #include <iostream>
 using namespace std;
 
+list<string> drawings;
+list<string>::iterator i;
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)//, scribbleArea(new ScribbleArea(this))
 {
     ui->setupUi(this);
-    vector<QString> drawings = {"Banana", "Penguin", "Cat", "Fish", "Shoe"};
+    drawings = {"Banana", "Penguin", "Cat", "Fish", "Shoe"};
 
-    QSignalMapper *signalMapper = new QSignalMapper(this);
-    signalMapper->setMapping(ui->submitBtn, "Test");
+    i = drawings.begin();
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
-    connect(ui->submitBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
-    connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(on_submitBtn_clicked(QString)));
+    connect(ui->submitBtn, SIGNAL(clicked()), this, SLOT(on_submitBtn_clicked()));
+    //connect(signalMapper, SIGNAL(mapped()), this, SLOT(on_submitBtn_clicked()));
     createActions();
     createMenus();
 
@@ -223,6 +224,12 @@ void MainWindow::on_widthBtn_clicked() {
     penWidth();
 }
 
-void MainWindow::on_submitBtn_clicked(QString s) {
-    ui->assignmentLbl->setText(s);
+void MainWindow::on_submitBtn_clicked() {
+    cout << *i  << endl;
+    //list<string> listRef = drawings;
+    //i = listRef.begin();
+    ui->assignmentLbl->setText(QString::fromStdString(*i));
+    //cout << *i << endl;
+    i++;
+    //cout << *i << endl;
 }
