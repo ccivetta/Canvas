@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->clearBtn, SIGNAL(released()), this, SLOT(on_clearBtn_clicked()));
     connect(ui->colorBtn, SIGNAL(released()), this, SLOT(on_colorBtn_clicked()));
     connect(ui->widthBtn, SIGNAL(released()), this, SLOT(on_widthBtn_clicked()));
-    connect(ui->submitBtn, SIGNAL(clicked()), this, SLOT(on_submitBtn_clicked()));
+    //connect(ui->submitBtn, SIGNAL(clicked()), this, SLOT(on_submitBtn_clicked()));
     //connect(signalMapper, SIGNAL(mapped()), this, SLOT(on_submitBtn_clicked()));
     createActions();
     createMenus();
