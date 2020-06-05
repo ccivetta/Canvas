@@ -56,7 +56,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -69,7 +69,7 @@
        <item>
         <widget class="QPushButton" name="submitBtn">
          <property name="text">
-          <string>Submit</string>
+          <string>Begin</string>
          </property>
         </widget>
        </item>

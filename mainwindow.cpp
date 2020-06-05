@@ -225,6 +225,9 @@ void MainWindow::on_widthBtn_clicked() {
 }
 
 void MainWindow::on_submitBtn_clicked() {
+    if(ui->submitBtn->text() == "Begin"){
+        ui->submitBtn->setText("Submit");
+    }
     cout << *i  << endl;
     //list<string> listRef = drawings;
     //i = listRef.begin();
